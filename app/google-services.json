@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "127614140922",
+    "firebase_url": "https://uptosomething-4b618.firebaseio.com",
+    "project_id": "uptosomething-4b618",
+    "storage_bucket": "uptosomething-4b618.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127614140922:android:41f41e38934295a6",
+        "android_client_info": {
+          "package_name": "com.example.staffonechristian.firebasepractice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTiUij8yfUYpFqLD66oxBTb8iQt73YKSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127614140922:android:9c062f2e2d44201b",
+        "android_client_info": {
+          "package_name": "com.example.staffonechristian.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTiUij8yfUYpFqLD66oxBTb8iQt73YKSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
