@@ -12,7 +12,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -31,11 +33,14 @@ public class MyData {
 //    DatabaseReference id = dr.child("Id");
 //    DatabaseReference Time = dr.child("Time");
 //    DatabaseReference title = dr.child("Title");
-    Stack<String> titleStack = new Stack<String>();
-    Stack<String> bodyStack = new Stack<String>();
+
     static String[] nameArray = {"Jean Fillion", "Head", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich","JellyBean", "Kitkat", "Lollipop", "Marshmallow"};
     static String[] versionArray = {"Lecture canceled", "New Event", "2.0-2.1", "2.2-2.2.3", "2.3-2.3.7", "3.0-3.2.6", "4.0-4.0.4", "4.1-4.3.1", "4.4-4.4.4", "5.0-5.1.1","6.0-6.0.1"};
-
+    static List bodyList = new ArrayList();
+    static List titleList = new ArrayList();
+    static List fromList = new ArrayList();
+    static List idList = new ArrayList();
+    static List timeList = new ArrayList();
     static Integer[] drawableArray = {R.drawable.conestoga, R.drawable.csi, R.drawable.eclair,
             R.drawable.froyo, R.drawable.gingerbread, R.drawable.honeycomb, R.drawable.ics,
             R.drawable.jellybean, R.drawable.kitkat, R.drawable.lollipop,R.drawable.marsh};
@@ -55,17 +60,42 @@ public class MyData {
                 {
                     case "Title":
                     {
-                        nameArray[0]=dataSnapshot.getValue(String.class);
-                        titleStack.push(dataSnapshot.getValue(String.class));
+                       // nameArray[0]=dataSnapshot.getValue(String.class);
+                        if(bodyList.contains(dataSnapshot.getValue(String.class)))
+                        {
+
+                        }else {
+                            bodyList.add(dataSnapshot.getValue(String.class));
+                        }
+
+
                         break;
                     }
                     case  "Body":
                     {
-                        versionArray[0]=dataSnapshot.getValue(String.class);
-                        bodyStack.push(dataSnapshot.getValue(String.class));
+                        if(titleList.contains(dataSnapshot.getValue(String.class)))
+                        {
+
+                        }else{
+                            titleList.add(dataSnapshot.getValue(String.class));
+                        }
+
                         break;
                     }
+                    case  "From":
+                    {
 
+                    }
+                    case "Id":
+                    {
+
+
+                    }
+                    case "Time":
+                    {
+
+
+                    }
                 }
 
             }
@@ -133,7 +163,6 @@ public class MyData {
 
             }
         });
-
 
     }
 

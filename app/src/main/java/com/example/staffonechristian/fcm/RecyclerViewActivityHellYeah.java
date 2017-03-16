@@ -38,15 +38,16 @@ public class RecyclerViewActivityHellYeah extends AppCompatActivity {
         MyData myData = new MyData();
         myData.ReadData();
         data = new ArrayList<DataModel>();
-        for (int i = 0; i < MyData.nameArray.length; i++) {
-            data.add(new DataModel(
-                    MyData.nameArray[i],
-                    MyData.versionArray[i],
-                    MyData.id_[i],
-                    MyData.drawableArray[i]
-            ));
+        if(MyData.bodyList.size()>0) {
+            for (int i = 0; i < MyData.bodyList.size(); i++) {
+                data.add(new DataModel(
+                        (String) MyData.bodyList.get(i),
+                        MyData.versionArray[i],
+                        MyData.id_[i],
+                        MyData.drawableArray[i]
+                ));
+            }
         }
-
         removedItems = new ArrayList<Integer>();
 
         adapter = new CustomAdapter(data);
