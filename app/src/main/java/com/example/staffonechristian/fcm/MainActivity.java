@@ -1,5 +1,6 @@
 package com.example.staffonechristian.fcm;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -107,5 +108,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void OpenAnnouncement(View view) {
+
+        Intent myIntent = new Intent(MainActivity.this,
+                RecyclerViewActivityHellYeah.class);
+        startActivity(myIntent);
     }
 }
