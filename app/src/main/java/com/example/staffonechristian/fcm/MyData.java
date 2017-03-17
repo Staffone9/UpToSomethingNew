@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -46,116 +47,50 @@ public class MyData {
             R.drawable.jellybean, R.drawable.kitkat, R.drawable.lollipop,R.drawable.marsh};
 
     static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-    public void ReadData()
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference dr = reference.child("Announcement");
+    public void CreateData()
     {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference dr = reference.child("Announcement");
-        final DatabaseReference body = dr.child("Body");
-        dr.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.e(TAG, "=======On child added"+dataSnapshot.getKey());
-                switch (dataSnapshot.getKey())
-                {
-                    case "Title":
-                    {
-                       // nameArray[0]=dataSnapshot.getValue(String.class);
-                        if(bodyList.contains(dataSnapshot.getValue(String.class)))
-                        {
 
-                        }else {
-                            bodyList.add(dataSnapshot.getValue(String.class));
-                        }
+        LatestDataModel latestDataModel = new LatestDataModel("New New","Dalibor123",3,"7 AM","khaber nahi Bhai");
+//        latestDataModel.setBody("New Body of message");
+//        latestDataModel.setFrom("Dalibor");
+//        latestDataModel.setId("2");
+//        latestDataModel.setTime("6 AM");
+//        latestDataModel.setTitle("Bhai bhai");
+        DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference drWrite = referenceWrite.child("Announcement").push();
+        drWrite.setValue(latestDataModel);
 
 
-                        break;
-                    }
-                    case  "Body":
-                    {
-                        if(titleList.contains(dataSnapshot.getValue(String.class)))
-                        {
-
-                        }else{
-                            titleList.add(dataSnapshot.getValue(String.class));
-                        }
-
-                        break;
-                    }
-                    case  "From":
-                    {
-
-                    }
-                    case "Id":
-                    {
-
-
-                    }
-                    case "Time":
-                    {
-
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.e(TAG, "=======On child changed");
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+    }
+    public void ReadDataNew()
+    {
         dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e(TAG, "=======>>>>>dataSnapshot.getValue()"+dataSnapshot.getValue());
+                for (DataSnapshot individual : dataSnapshot.getChildren()) {
+                    String Body = individual.child("body").getValue(String.class);
+                    String From = individual.child("from").getValue(String.class);
+                    String Time = individual.child("time").getValue(String.class);
+                    int Id = individual.child("id").getValue(Integer.class);
+                    String Title = individual.child("title").getValue(String.class);
+                    Log.e(TAG, "=======>>>>>boss stage body"+Body);
+                    if(bodyList.contains(Body))
+                        {
 
-                Log.e(TAG, "=======OnData Changed"+dataSnapshot.child("Title").getValue().toString()+"number of child"+dataSnapshot.getChildren());
+                        }else {
+                            bodyList.add(Body);
+                        }
+                    if(titleList.contains(Title))
+                        {
 
-                for(DataSnapshot data : dataSnapshot.getChildren()){
-
-                 //   MyAnnouncementData myAnnouncementData = data.getValue(MyAnnouncementData.class);
-
-                    Log.e(TAG, "=======kkk"+data.child("Body").getValue(String.class));
-                    // use this object and store it into an ArrayList<Template> to use it further
+                        }else{
+                            titleList.add(Title);
+                        }
 
                 }
-//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-//                    nameArray[0]= postSnapshot.child("Title").getValue().toString();
-//                    Log.e(TAG, "======="+postSnapshot.child("Body").getValue());
-//                    Log.e(TAG, "======="+postSnapshot.child("From").getValue());
-//                    Log.e(TAG, "======="+postSnapshot.child("Id").getValue());
-//                    Log.e(TAG, "======="+postSnapshot.child("Time").getValue());
-//                    Log.e(TAG, "======="+postSnapshot.child("Title").getValue());
-//
-//                }
-//                body.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        nameArray[0] = dataSnapshot.getValue(String.class);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-
             }
 
             @Override
@@ -164,7 +99,10 @@ public class MyData {
             }
         });
 
+
     }
+
+
 
 
 }

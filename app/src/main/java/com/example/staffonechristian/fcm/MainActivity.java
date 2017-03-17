@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText titleText;
     EditText DetailText;
     Button sendButton;
-
+    MyData myData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +44,14 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        myData = new MyData();
+//        myData.CreateData();
         titleText = (EditText) findViewById(R.id.TitleId);
         DetailText = (EditText) findViewById(R.id.DetailId);
         sendButton = (Button) findViewById(R.id.SendId);
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
+
+        myData.ReadDataNew();
 
     }
 

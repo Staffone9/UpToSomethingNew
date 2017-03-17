@@ -35,21 +35,19 @@ public class RecyclerViewActivityHellYeah extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        MyData myData = new MyData();
-        myData.ReadData();
+
         data = new ArrayList<DataModel>();
-        if(MyData.bodyList.size()>0) {
+
             for (int i = 0; i < MyData.bodyList.size(); i++) {
                 data.add(new DataModel(
                         (String) MyData.bodyList.get(i),
-                        MyData.versionArray[i],
+                        (String) MyData.titleList.get(i),
                         MyData.id_[i],
                         MyData.drawableArray[i]
                 ));
             }
-        }
-        removedItems = new ArrayList<Integer>();
 
+        removedItems = new ArrayList<Integer>();
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
     }
