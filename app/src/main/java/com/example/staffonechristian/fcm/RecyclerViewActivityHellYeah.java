@@ -38,7 +38,7 @@ public class RecyclerViewActivityHellYeah extends AppCompatActivity {
 
         data = new ArrayList<DataModel>();
 
-            for (int i = 0; i < MyData.bodyList.size(); i++) {
+            for (int i = MyData.bodyList.size()-1; i>0; i--) {
                 data.add(new DataModel(
                         (String) MyData.bodyList.get(i),
                         (String) MyData.titleList.get(i),

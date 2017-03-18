@@ -46,6 +46,81 @@
       },
       "oauth_client": [
         {
+          "client_id": "127614140922-8q2jv8dqlteqajs024vq1u0l50gr7o2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.staffonechristian.fcm",
+            "certificate_hash": "a73bacfb3ae3a1c6947833c196260fefbb0713aa"
+          }
+        },
+        {
+          "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTiUij8yfUYpFqLD66oxBTb8iQt73YKSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127614140922:android:472050686759fe1d",
+        "android_client_info": {
+          "package_name": "com.example.staffonechristian.fcmtopicmessage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTiUij8yfUYpFqLD66oxBTb8iQt73YKSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127614140922:android:0de41de2c191bdc0",
+        "android_client_info": {
+          "package_name": "com.journaldev.recyclerviewcardview"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "127614140922-ff6jhdupjst5vka7lv7gje9ec4hub8uu.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -2,6 +2,7 @@ package com.example.staffonechristian.fcm;
 
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -34,11 +42,14 @@ public class MainActivity extends AppCompatActivity {
     EditText DetailText;
     Button sendButton;
     MyData myData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        Intent intent = new Intent(MainActivity.this,SignInActivity.class);
+        startActivity(intent);
+        FirebaseMessaging.getInstance().subscribeToTopic("MSG");
         //because of network exception
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -46,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
         myData = new MyData();
 //        myData.CreateData();
+
         titleText = (EditText) findViewById(R.id.TitleId);
         DetailText = (EditText) findViewById(R.id.DetailId);
         sendButton = (Button) findViewById(R.id.SendId);
@@ -64,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         info.put("body", Detail); // Notification body
         info.put("sound", "default"); // Notification sound
         json.put("notification", info);
-        json.put("to","/topics/news");
+        json.put("to","/topics/MSG");
 
         Log.e("jsonn==> ",json.toString());
         String data = json.toString();
@@ -107,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void SendNotification(View view) {
         try {
+            MyData myData = new MyData();
+            myData.CreateData(titleText.getText().toString(),DetailText.getText().toString());
             makeRequest(titleText.getText().toString(),DetailText.getText().toString());
             //  Toast.makeText(this,makeRequest(1+""),Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
@@ -120,4 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 RecyclerViewActivityHellYeah.class);
         startActivity(myIntent);
     }
+
+
 }

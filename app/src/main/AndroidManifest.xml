@@ -27,7 +27,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".RecyclerViewActivityHellYeah"></activity>
+        <activity android:name=".RecyclerViewActivityHellYeah" />
+        <activity android:name=".SignInActivity"></activity>
     </application>
 
 </manifest>

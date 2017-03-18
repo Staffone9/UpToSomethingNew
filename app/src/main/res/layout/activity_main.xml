@@ -9,22 +9,27 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.staffonechristian.fcm.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="26dp"
-        android:id="@+id/TitleId"
-        android:hint="Title Of Event" />
+        <EditText
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="26dp"
+            android:id="@+id/TitleId"
+            android:hint="Title Of Event" />
 
-    <EditText
-        android:layout_width="wrap_content"
+        <EditText
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:inputType="textPersonName"
         android:ems="10"
@@ -35,11 +40,15 @@
         android:layout_marginTop="25dp"
         android:id="@+id/DetailId"
         android:hint="Detail Of Event"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_weight="0.25" />
+
+
+
 
     <Button
         android:text="Send"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SendId"
         android:layout_marginTop="48dp"
@@ -52,7 +61,7 @@
 
     <Button
         android:text="Announcement"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SendId"
         android:layout_marginTop="62dp"
@@ -62,4 +71,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    </LinearLayout>
 </RelativeLayout>

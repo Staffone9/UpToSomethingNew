@@ -49,10 +49,10 @@ public class MyData {
     static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dr = reference.child("Announcement");
-    public void CreateData()
+    public void CreateData(String bodyCreate,String titleCreate)
     {
 
-        LatestDataModel latestDataModel = new LatestDataModel("New New","Dalibor123",3,"7 AM","khaber nahi Bhai");
+        LatestDataModel latestDataModel = new LatestDataModel(bodyCreate,"Dalibor123","7 AM",titleCreate);
 //        latestDataModel.setBody("New Body of message");
 //        latestDataModel.setFrom("Dalibor");
 //        latestDataModel.setId("2");
@@ -74,7 +74,7 @@ public class MyData {
                     String Body = individual.child("body").getValue(String.class);
                     String From = individual.child("from").getValue(String.class);
                     String Time = individual.child("time").getValue(String.class);
-                    int Id = individual.child("id").getValue(Integer.class);
+
                     String Title = individual.child("title").getValue(String.class);
                     Log.e(TAG, "=======>>>>>boss stage body"+Body);
                     if(bodyList.contains(Body))

@@ -9,14 +9,14 @@ import java.io.Serializable;
 public class LatestDataModel implements Serializable {
     private String Body;
     private String From;
-    private int Id;
+
     private String Time;
     private String Title;
 
-    public LatestDataModel(String body, String from, int id, String time, String title) {
+    public LatestDataModel(String body, String from, String time, String title) {
         Body = body;
         From = from;
-        Id = id;
+
         Time = time;
         Title = title;
     }
@@ -37,13 +37,6 @@ public class LatestDataModel implements Serializable {
         From = from;
     }
 
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
 
     public String getTime() {
         return Time;
