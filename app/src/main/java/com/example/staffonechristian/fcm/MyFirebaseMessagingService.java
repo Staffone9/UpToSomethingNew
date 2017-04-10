@@ -2,7 +2,6 @@ package com.example.staffonechristian.fcm;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
@@ -41,7 +40,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(NotificationData notificationData) {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,Send_Notifications.class);
         intent.putExtra(NotificationData.TEXT,notificationData.getTextMessage());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0/*Request Code*/,intent,PendingIntent.FLAG_ONE_SHOT);

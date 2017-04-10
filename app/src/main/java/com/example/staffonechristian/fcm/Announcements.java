@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class RecyclerViewActivityHellYeah extends AppCompatActivity {
+public class Announcements extends AppCompatActivity {
 
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -26,7 +26,7 @@ public class RecyclerViewActivityHellYeah extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view_hell_yeah);
+        setContentView(R.layout.activity_announcements);
         myOnClickListener = new MyOnClickListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);

@@ -38,7 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cards_layout, parent, false);
 
-        view.setOnClickListener(RecyclerViewActivityHellYeah.myOnClickListener);
+        view.setOnClickListener(Announcements.myOnClickListener);
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;

@@ -6,9 +6,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:supportsRtl="true">
+        <activity android:name=".SignInActivity" android:theme="@style/FirstPageTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +26,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".RecyclerViewActivityHellYeah" />
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".Announcements"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".Send_Notifications"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

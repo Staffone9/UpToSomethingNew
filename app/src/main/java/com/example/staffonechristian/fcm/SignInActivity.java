@@ -1,6 +1,7 @@
 package com.example.staffonechristian.fcm;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
         //login code start
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -37,7 +39,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 .enableAutoManage(this , this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        statusTextView = (TextView) findViewById(R.id.status_textview);
+        //statusTextView = (TextView) findViewById(R.id.status_textview);
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
         //login code end
@@ -66,7 +68,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
-            statusTextView.setText("Hello, " + acct.getDisplayName()+" Email Id:- "+acct.getEmail());
+            //statusTextView.setText("Hello, " + acct.getDisplayName()+" Email Id:- "+acct.getEmail());
 
         } else {
         }
@@ -76,6 +78,8 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         Intent signInIntent =
                 Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        //Intent intent = new Intent(SignInActivity.this,Send_Notifications.class);
+        //startActivity(intent);
     }
 
     @Override
