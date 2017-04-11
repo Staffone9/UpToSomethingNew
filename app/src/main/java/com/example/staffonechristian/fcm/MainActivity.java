@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -40,15 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
     EditText titleText;
     EditText DetailText;
-    Button sendButton;
+    Button sendButton,logOutButton;
     MyData myData;
-
+    LatestDataModel latestDataModel;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(MainActivity.this,SignInActivity.class);
-        startActivity(intent);
+
+
+        latestDataModel = new LatestDataModel();
         FirebaseMessaging.getInstance().subscribeToTopic("MSG");
         //because of network exception
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -56,19 +60,36 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
         myData = new MyData();
+        auth = FirebaseAuth.getInstance();
 //        myData.CreateData();
-
+        logOutButton = (Button) findViewById(R.id.logoutButton1);
+        myData.CreatUser(latestDataModel.getEmailId());
         titleText = (EditText) findViewById(R.id.TitleId);
         DetailText = (EditText) findViewById(R.id.DetailId);
         sendButton = (Button) findViewById(R.id.SendId);
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
 
         myData.ReadDataNew();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser()==null)
+                {
+                    startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+                }
+
+            }
+        };
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
+    }
 
-    public static String makeRequest(String title,String Detail) throws JSONException {
+    public static String makeRequest(String title, String Detail) throws JSONException {
         HttpURLConnection urlConnection;
         JSONObject json = new JSONObject();
         JSONObject info = new JSONObject();
@@ -136,4 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void LogoutMethod(View view) {
+        auth.signOut();
+    }
 }

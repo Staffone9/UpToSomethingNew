@@ -12,6 +12,8 @@ public class LatestDataModel implements Serializable {
 
     private String Time;
     private String Title;
+    private static String emailId;
+
 
     public LatestDataModel(String body, String from, String time, String title) {
         Body = body;
@@ -19,6 +21,17 @@ public class LatestDataModel implements Serializable {
 
         Time = time;
         Title = title;
+    }
+    public LatestDataModel()
+    {
+
+    }
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getBody() {
