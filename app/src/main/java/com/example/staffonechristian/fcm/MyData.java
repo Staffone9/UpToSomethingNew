@@ -45,10 +45,12 @@ public class MyData {
     static Integer[] drawableArray = {R.drawable.conestoga, R.drawable.csi, R.drawable.eclair,
             R.drawable.froyo, R.drawable.gingerbread, R.drawable.honeycomb, R.drawable.ics,
             R.drawable.jellybean, R.drawable.kitkat, R.drawable.lollipop,R.drawable.marsh};
-
+    static boolean flag=true;
     static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    LatestDataModel latestDataModel;
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dr = reference.child("Announcement");
+    DatabaseReference drUser = reference.child("User");
     public void CreateData(String bodyCreate,String titleCreate)
     {
 
@@ -64,6 +66,41 @@ public class MyData {
 
 
     }
+
+    public void CreatUser(String emailId)
+    {
+        latestDataModel = new LatestDataModel();
+        latestDataModel.setEmailId(emailId);
+        drUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot individual : dataSnapshot.getChildren()) {
+                    String emailId = individual.child("emailId").getValue(String.class);
+                    if(emailId.equals(latestDataModel.getEmailId()))
+                    {
+                        flag = false;
+                    }
+                    Log.e(TAG, "=======>>>>>emailssss"+dataSnapshot.getChildren());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        if(flag==true)
+        {
+            DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference drWrite = referenceWrite.child("User").push();
+            drWrite.setValue(latestDataModel);
+        }
+
+
+    }
     public void ReadDataNew()
     {
         dr.addValueEventListener(new ValueEventListener() {
@@ -74,8 +111,8 @@ public class MyData {
                     String Body = individual.child("body").getValue(String.class);
                     String From = individual.child("from").getValue(String.class);
                     String Time = individual.child("time").getValue(String.class);
-
                     String Title = individual.child("title").getValue(String.class);
+
                     Log.e(TAG, "=======>>>>>boss stage body"+Body);
                     if(bodyList.contains(Body))
                         {
