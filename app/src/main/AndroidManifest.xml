@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name=".SignInActivity" android:theme="@style/FirstPageTheme">
+        <activity android:name=".Send_Notifications" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
 
         <activity android:name=".Announcements"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".Send_Notifications"
+        <activity android:name=".SignInActivity"
             android:theme="@style/AppTheme"/>
     </application>
 
