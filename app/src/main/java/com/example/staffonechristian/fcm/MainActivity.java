@@ -151,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenAnnouncement(View view) {
 
-        Intent myIntent = new Intent(MainActivity.this,
-                RecyclerViewActivityHellYeah.class);
+        Intent myIntent = new Intent(MainActivity.this, Announcements.class);
         startActivity(myIntent);
     }
 

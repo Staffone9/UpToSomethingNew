@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class SignInActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     SignInButton signInButton;
-    TextView statusTextView;
+
     GoogleApiClient mGoogleApiClient;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -65,7 +65,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        statusTextView = (TextView) findViewById(R.id.status_textview);
+
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
         //login code end
@@ -134,7 +134,6 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
-            statusTextView.setText("Hello, " + acct.getDisplayName());
             latestDataModel.setEmailId(acct.getEmail());
 
             Intent intent = new Intent(SignInActivity.this,MainActivity.class);
