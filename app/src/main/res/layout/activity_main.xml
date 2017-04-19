@@ -16,67 +16,43 @@
         android:weightSum="1">
 
         <EditText
-            android:id="@+id/TitleId"
-            android:layout_width="307dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="26dp"
-            android:ems="10"
-            android:hint="Title Of Event"
-            android:inputType="textPersonName" />
-
-        <EditText
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:maxLines="10"
-        android:layout_below="@+id/TitleId"
-        android:layout_alignLeft="@+id/TitleId"
-        android:layout_alignStart="@+id/TitleId"
-        android:layout_marginTop="25dp"
-        android:id="@+id/DetailId"
-        android:hint="Detail Of Event"
-        android:textSize="18sp"
-        android:layout_weight="0.25" />
-
-
-
-
-    <Button
-        android:text="Send"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SendId"
-        android:layout_marginTop="48dp"
-        android:onClick="SendNotification"
-        android:layout_below="@+id/DetailId"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Announcement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/SendId"
-        android:layout_marginTop="62dp"
-        android:id="@+id/RecyclerId"
-        android:onClick="OpenAnnouncement"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-        <Button
+            android:id="@+id/titleId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/logoutButton1"
-            android:onClick="LogoutMethod"
+            android:hint="Event Title"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/detailId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleId"
+            android:maxLines="3"
+            android:hint="Event Details"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailId"
+            android:text="Send"
+            android:onClick="SendNotification" />
+
+        <Button
+            android:id="@+id/btnRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SendId"
+            android:text="Announcements"
+            android:onClick="OpenAnnouncement" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Log out"
-            />
+            android:onClick="LogoutMethod" />
+
     </LinearLayout>
 </RelativeLayout>

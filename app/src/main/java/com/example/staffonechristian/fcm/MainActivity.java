@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         myData = new MyData();
         auth = FirebaseAuth.getInstance();
 //        myData.CreateData();
-        logOutButton = (Button) findViewById(R.id.logoutButton1);
+        logOutButton = (Button) findViewById(R.id.btnLogout);
         myData.CreatUser(latestDataModel.getEmailId());
-        titleText = (EditText) findViewById(R.id.TitleId);
-        DetailText = (EditText) findViewById(R.id.DetailId);
-        sendButton = (Button) findViewById(R.id.SendId);
+        titleText = (EditText) findViewById(R.id.titleId);
+        DetailText = (EditText) findViewById(R.id.detailId);
+        sendButton = (Button) findViewById(R.id.btnSend);
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
 
         myData.ReadDataNew();
