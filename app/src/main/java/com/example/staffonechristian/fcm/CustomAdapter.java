@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private ArrayList<DataModel> dataSet;
+    private ArrayList<LatestDataModel> dataSet;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -28,7 +28,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         }
     }
 
-    public CustomAdapter(ArrayList<DataModel> data) {
+    public CustomAdapter(ArrayList<LatestDataModel> data) {
         this.dataSet = data;
     }
 
@@ -51,9 +51,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView textViewVersion = holder.textViewVersion;
         ImageView imageView = holder.imageViewIcon;
 
-        textViewName.setText(dataSet.get(listPosition).getName());
-        textViewVersion.setText(dataSet.get(listPosition).getVersion());
-        imageView.setImageResource(dataSet.get(listPosition).getImage());
+        textViewName.setText(dataSet.get(listPosition).getBody());
+        textViewVersion.setText(dataSet.get(listPosition).getTitle());
+       // imageView.setImageResource(dataSet.get(listPosition).getImage());
     }
 
     @Override

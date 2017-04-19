@@ -19,7 +19,7 @@ public class Announcements extends AppCompatActivity {
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private static ArrayList<DataModel> data;
+    private static ArrayList<LatestDataModel> data;
     static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
 
@@ -36,14 +36,13 @@ public class Announcements extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        data = new ArrayList<DataModel>();
+        data = new ArrayList<LatestDataModel>();
 
             for (int i = MyData.bodyList.size()-1; i>0; i--) {
-                data.add(new DataModel(
+                data.add(new LatestDataModel(
                         (String) MyData.bodyList.get(i),
                         (String) MyData.titleList.get(i),
-                        MyData.id_[i],
-                        MyData.drawableArray[i]
+                        "cv","fv"
                 ));
             }
 
@@ -90,29 +89,7 @@ public class Announcements extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        if (item.getItemId() == R.id.add_item) {
-            //check if any items to add
-            if (removedItems.size() != 0) {
-                addRemovedItemToList();
-            } else {
-                Toast.makeText(this, "Nothing to add", Toast.LENGTH_SHORT).show();
-            }
-        }
-        return true;
-    }
 
-    private void addRemovedItemToList() {
-        int addItemAtListPosition = 3;
-        data.add(addItemAtListPosition, new DataModel(
-                MyData.nameArray[removedItems.get(0)],
-                MyData.versionArray[removedItems.get(0)],
-                MyData.id_[removedItems.get(0)],
-                MyData.drawableArray[removedItems.get(0)]
-        ));
-        adapter.notifyItemInserted(addItemAtListPosition);
-        removedItems.remove(0);
-    }
+
+
 }

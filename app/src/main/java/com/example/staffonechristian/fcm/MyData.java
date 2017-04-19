@@ -119,13 +119,9 @@ public class MyData {
 
                         }else {
                             bodyList.add(Body);
-                        }
-                    if(titleList.contains(Title))
-                        {
-
-                        }else{
                             titleList.add(Title);
                         }
+
 
                 }
             }
