@@ -9,27 +9,33 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.staffonechristian.fcm.MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <EditText
             android:id="@+id/titleId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Event Title"
-            android:textSize="18sp"/>
+            android:hint="Title of event"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/detailId"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/titleId"
-            android:maxLines="3"
-            android:hint="Event Details"
-            android:textSize="18sp" />
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:hint="Details of event"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnSend"
@@ -37,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/detailId"
             android:text="Send"
-            android:onClick="SendNotification" />
+            android:onClick="SendNotification"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnRecycle"
@@ -45,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/SendId"
             android:text="Announcements"
-            android:onClick="OpenAnnouncement" />
+            android:onClick="OpenAnnouncement"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnLogout"
@@ -53,6 +63,5 @@
             android:layout_height="wrap_content"
             android:text="Log out"
             android:onClick="LogoutMethod" />
-
     </LinearLayout>
 </RelativeLayout>
