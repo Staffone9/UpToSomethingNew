@@ -3,9 +3,15 @@ package com.example.staffonechristian.fcm;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +42,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private Toolbar mToolBar;
+    private NavigationView mNavView;
 
     EditText titleText;
     EditText DetailText;
@@ -50,8 +60,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Design part
+        //Created by Anjali Desai
+        mToolBar = (Toolbar)findViewById(R.id.nav_action);
+        setSupportActionBar(mToolBar);
 
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_recycler_view_hell_yeah);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
 
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mNavView = (NavigationView)findViewById(R.id.my_nav_view);
+        mNavView.setNavigationItemSelectedListener(MainActivity.this);
+
+        //Backend part
+        //Created by Staffone Christian
         latestDataModel = new LatestDataModel();
         FirebaseMessaging.getInstance().subscribeToTopic("MSG");
         //because of network exception
@@ -61,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }
         myData = new MyData();
         auth = FirebaseAuth.getInstance();
-//        myData.CreateData();
-        logOutButton = (Button) findViewById(R.id.btnLogout);
+        //myData.CreateData();
         myData.CreatUser(latestDataModel.getEmailId());
         titleText = (EditText) findViewById(R.id.titleId);
         DetailText = (EditText) findViewById(R.id.detailId);
@@ -77,19 +102,49 @@ public class MainActivity extends AppCompatActivity {
                 {
                     startActivity(new Intent(getApplicationContext(),SignInActivity.class));
                 }
-
             }
         };
-
     }
+
+    //Design part
+    //Created by Anjali Desai
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.announ) {
+            Intent intent = new Intent(getApplicationContext(),Announcements.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.chann) {
+            Intent intent = new Intent(getApplicationContext(),CreateChannel.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.sendAnnoun) {
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
+
+        else if (id == R.id.logout) {
+            auth.signOut();
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    //Backend part
+    //Created by Staffone Christian
     @Override
     protected void onStart() {
         super.onStart();
@@ -157,13 +212,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenAnnouncement(View view) {
-
         Intent myIntent = new Intent(MainActivity.this, Announcements.class);
         startActivity(myIntent);
     }
 
-
-    public void LogoutMethod(View view) {
+   /* public void LogoutMethod(View view) {
         auth.signOut();
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

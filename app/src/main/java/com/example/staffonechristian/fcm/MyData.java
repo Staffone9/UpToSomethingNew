@@ -43,9 +43,9 @@ public class MyData {
     static List fromList = new ArrayList();
     static List idList = new ArrayList();
     static List timeList = new ArrayList();
-    static Integer[] drawableArray = {R.drawable.conestoga, R.drawable.csi, R.drawable.eclair,
+   /* static Integer[] drawableArray = {R.drawable.conestoga, R.drawable.csi, R.drawable.eclair,
             R.drawable.froyo, R.drawable.gingerbread, R.drawable.honeycomb, R.drawable.ics,
-            R.drawable.jellybean, R.drawable.kitkat, R.drawable.lollipop,R.drawable.marsh};
+            R.drawable.jellybean, R.drawable.kitkat, R.drawable.lollipop,R.drawable.marsh};*/
     static boolean flag=true;
     static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     LatestDataModel latestDataModel;
