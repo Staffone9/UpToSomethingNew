@@ -42,7 +42,7 @@ public class Announcements extends AppCompatActivity {
                 data.add(new LatestDataModel(
                         (String) MyData.bodyList.get(i),
                         (String) MyData.titleList.get(i),
-                        "cv","fv"
+                        "cv","fv","hi"
                 ));
             }
 

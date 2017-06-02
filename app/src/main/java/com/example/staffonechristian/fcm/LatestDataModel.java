@@ -9,16 +9,23 @@ import java.io.Serializable;
 public class LatestDataModel implements Serializable {
     private String Body;
     private String From;
-
+    private String author;
     private String Time;
     private String Title;
     private static String emailId;
 
+    public String getAuthor() {
+        return author;
+    }
 
-    public LatestDataModel(String body, String from, String time, String title) {
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public LatestDataModel(String body, String from,String time, String title,String authorOne) {
         Body = body;
         From = from;
-
+        author = authorOne;
         Time = time;
         Title = title;
     }
