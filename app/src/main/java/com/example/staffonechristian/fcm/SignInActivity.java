@@ -135,7 +135,6 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
             latestDataModel.setEmailId(acct.getEmail());
-
             Intent intent = new Intent(SignInActivity.this,MainActivity.class);
             startActivity(intent);
 

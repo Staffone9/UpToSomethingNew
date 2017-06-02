@@ -5,6 +5,7 @@ import android.provider.SyncStateContract;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,10 +52,11 @@ public class MyData {
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     DatabaseReference dr = reference.child("Announcement");
     DatabaseReference drUser = reference.child("User");
+
     public void CreateData(String bodyCreate,String titleCreate)
     {
 
-        LatestDataModel latestDataModel = new LatestDataModel(bodyCreate,"Dalibor123","7 AM",titleCreate);
+        LatestDataModel latestDataModel = new LatestDataModel(bodyCreate,"Dalibor123","7 AM",titleCreate,"as");
 //        latestDataModel.setBody("New Body of message");
 //        latestDataModel.setFrom("Dalibor");
 //        latestDataModel.setId("2");
