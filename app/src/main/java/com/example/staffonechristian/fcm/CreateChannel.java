@@ -1,6 +1,7 @@
 package com.example.staffonechristian.fcm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +30,7 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     EditText channelName;
     EditText channelDescription,userName;
     String creatorName,creatorEmailId;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,7 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
         userName = (EditText) findViewById(R.id.username);
 
         createChannel.setEnabled(false);
+        sharedPreferences = getSharedPreferences("SignIn",MODE_PRIVATE);
     }
 
     //Design part
@@ -104,10 +108,12 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     //Created by Staffone Christian
     public void CreateChannel(View view) {
 
-        channelDataModel = new ChannelDataModel(channelName.getText().toString(),channelDescription.getText().toString(),userName.getText().toString(),creatorName,creatorEmailId);
+        channelDataModel = new ChannelDataModel(channelName.getText().toString(),channelDescription.getText().toString(),userName.getText().toString(),sharedPreferences.getString("creatorName",null),sharedPreferences.getString("emailID",null));
         DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
         DatabaseReference drWrite = referenceWrite.child("ChannelSubscription").push();
         drWrite.setValue(channelDataModel);
+        Toast.makeText(getApplicationContext(),"Channel Created Successfully",Toast.LENGTH_SHORT).show();
+        createChannel.setEnabled(false);
 
     }
 

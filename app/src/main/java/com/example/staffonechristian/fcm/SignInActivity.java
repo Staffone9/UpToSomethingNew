@@ -1,6 +1,8 @@
 package com.example.staffonechristian.fcm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +38,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     ChannelDataModel channelDataModel;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +69,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
+        sharedPreferences = getSharedPreferences("SignIn", Context.MODE_PRIVATE);
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
         //login code end
@@ -122,11 +125,12 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }else {
-                            channelDataModel = new ChannelDataModel();
-                            channelDataModel.setCreatorEmailId(acct.getEmail());
-                            channelDataModel.setCreatorName(acct.getDisplayName());
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("emailID",acct.getEmail());
+                            editor.putString("creatorName",acct.getDisplayName());
+                            editor.commit();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             Toast.makeText(getApplicationContext(), "Authentication Successful.", Toast.LENGTH_SHORT).show();
 
 
