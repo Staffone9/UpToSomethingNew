@@ -98,21 +98,23 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.announ) {
-            Intent intent = new Intent(this,Announcements.class);
+            Intent intent = new Intent(getApplicationContext(),Announcements.class);
             startActivity(intent);
-        }
-        else if (id == R.id.chann) {
-            Intent intent = new Intent(this,CreateChannel.class);
-            startActivity(intent);
-
         }
         else if (id == R.id.sendAnnoun) {
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }
-         /*else if (id == R.id.logout) {
-            auth.signOut();
-        }*/
+        else if (id == R.id.chann) {
+            Intent intent = new Intent(getApplicationContext(),CreateChannel.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.sub){
+
+        }
+        else if(id == R.id.logout){
+
+        }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -152,11 +154,11 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+    }*/
 
 }

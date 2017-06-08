@@ -121,24 +121,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.announ) {
             Intent intent = new Intent(getApplicationContext(),Announcements.class);
             startActivity(intent);
-        }
-        else if (id == R.id.chann) {
-            Intent intent = new Intent(getApplicationContext(),CreateChannel.class);
-            startActivity(intent);
-
         }
         else if (id == R.id.sendAnnoun) {
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.chann) {
+            Intent intent = new Intent(getApplicationContext(),CreateChannel.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.sub){
 
-        else if (id == R.id.logout) {
+        }
+        else if(id == R.id.logout){
             auth.signOut();
         }
+
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
