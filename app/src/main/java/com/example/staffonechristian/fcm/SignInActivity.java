@@ -35,6 +35,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     LatestDataModel latestDataModel;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
+    ChannelDataModel channelDataModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +105,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -121,7 +122,11 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }else {
+                            channelDataModel = new ChannelDataModel();
+                            channelDataModel.setCreatorEmailId(acct.getEmail());
+                            channelDataModel.setCreatorName(acct.getDisplayName());
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
                             Toast.makeText(getApplicationContext(), "Authentication Successful.", Toast.LENGTH_SHORT).show();
 
 

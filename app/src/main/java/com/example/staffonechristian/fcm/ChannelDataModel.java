@@ -9,8 +9,20 @@ public class ChannelDataModel {
     private String channelName;
     private String description;
     private String uniqueUserName;
-    private String creatorName;
-    private String creatorEmailId;
+    private static String creatorName;
+    private static String creatorEmailId;
+
+    public ChannelDataModel(String channelName, String description, String uniqueUserName, String creatorName, String creatorEmailId) {
+        this.channelName = channelName;
+        this.description = description;
+        this.uniqueUserName = uniqueUserName;
+        this.creatorName = creatorName;
+        this.creatorEmailId = creatorEmailId;
+    }
+    public  ChannelDataModel()
+    {
+
+    }
 
     public String getChannelName() {
         return channelName;

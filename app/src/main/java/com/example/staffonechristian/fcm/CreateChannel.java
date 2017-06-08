@@ -14,16 +14,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CreateChannel extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
     private NavigationView mNavView;
-
+    ChannelDataModel channelDataModel,channelOne;
     Button createChannel;
     EditText channelName;
-    EditText channelDescription;
+    EditText channelDescription,userName;
+    String creatorName,creatorEmailId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +45,20 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        channelOne = new ChannelDataModel();
         mNavView = (NavigationView)findViewById(R.id.my_nav_view);
         mNavView.setNavigationItemSelectedListener(CreateChannel.this);
+        creatorName= channelOne.getCreatorName();
+        creatorEmailId = channelOne.getCreatorEmailId();
 
         //Backend part
         //Created by Staffone Christian
         createChannel = (Button) findViewById(R.id.CreateChannelButton);
         channelName = (EditText) findViewById(R.id.ChannelNameEditText);
         channelDescription = (EditText) findViewById(R.id.ChannerlDescriptionEdittext);
+        userName = (EditText) findViewById(R.id.username);
+
+        createChannel.setEnabled(false);
     }
 
     //Design part
@@ -89,5 +98,15 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     //Backend part
     //Created by Staffone Christian
     public void CreateChannel(View view) {
+
+        channelDataModel = new ChannelDataModel(channelName.getText().toString(),channelDescription.getText().toString(),userName.getText().toString(),creatorName,creatorEmailId);
+        DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference drWrite = referenceWrite.child("ChannelSubscription").push();
+        drWrite.setValue(channelDataModel);
+
+    }
+
+    public void CheckAvailability(View view) {
+        createChannel.setEnabled(true);
     }
 }
