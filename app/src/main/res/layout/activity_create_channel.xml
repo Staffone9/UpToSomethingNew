@@ -35,6 +35,21 @@
             android:scrollHorizontally="true"
             android:id="@+id/ChannerlDescriptionEdittext"
             android:lines="5" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Channel Unique Username"
+                android:id="@+id/username" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check Availability"
+                />
+        </LinearLayout>
 
         <Button
             android:id="@+id/CreateChannelButton"
