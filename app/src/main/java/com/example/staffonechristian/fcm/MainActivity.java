@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToolBar = (Toolbar)findViewById(R.id.nav_action);
         setSupportActionBar(mToolBar);
 
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_recycler_view_hell_yeah);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_main);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);

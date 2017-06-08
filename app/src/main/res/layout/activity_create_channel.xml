@@ -17,24 +17,27 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Channel" />
-
         <EditText
+            android:id="@+id/ChannelNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Channel Name"
-            android:id="@+id/ChannelNameEditText" />
+            android:textColorHint="@color/colorSecondaryText"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <EditText
+            android:id="@+id/ChannerlDescriptionEdittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Channel Description"
-            android:scrollHorizontally="true"
-            android:id="@+id/ChannerlDescriptionEdittext"
-            android:lines="5" />
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:textColorHint="@color/colorSecondaryText"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/CreateChannelButton"
@@ -42,11 +45,11 @@
             android:layout_height="wrap_content"
             android:onClick="CreateChannel"
             android:text="Create"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_margin="20dp"
             android:background="@drawable/btn_drawable"
             android:textColor="@color/color_white"
-            android:layout_margin="20dp"/>
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
     </LinearLayout>
 

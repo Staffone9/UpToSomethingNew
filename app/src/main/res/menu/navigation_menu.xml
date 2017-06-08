@@ -7,27 +7,28 @@
 
         <item android:id="@+id/announ"
             android:title="Announcements"
-            android:icon="@mipmap/ic_announcement_black_24dp"/>
+            android:icon="@mipmap/announcement_icon"/>
 
         <item android:id="@+id/sendAnnoun"
             android:title="Send Announcement"
-            android:icon="@mipmap/ic_launch_black_24dp"/>
+            android:icon="@mipmap/send_icon"/>
 
         <item android:id="@+id/chann"
             android:title="Create Channel"
-            android:icon="@mipmap/ic_launch_black_24dp"/>
+            android:icon="@mipmap/channel_icon"/>
 
         <item android:id="@+id/sub"
             android:title="Subscriptions"
-            android:icon="@mipmap/ic_subscriptions_black_24dp"/>
-
+            android:icon="@mipmap/subscription_icon"/>
     </group>
+
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="none">
 
         <item android:id="@+id/logout"
-            android:title="Logout"/>
+            android:title="Logout"
+            android:icon="@mipmap/logout_icon"/>
     </group>
 
 

@@ -12,9 +12,8 @@
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/color_white"
         card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="5dp"
+        card_view:cardElevation="3dp"
         card_view:cardUseCompatPadding="true">
-
 
         <LinearLayout
             android:layout_width="match_parent"
