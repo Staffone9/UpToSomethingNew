@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     EditText titleText;
     EditText DetailText;
-    Button sendButton,logOutButton;
+    Button sendButton;
     MyData myData;
     LatestDataModel latestDataModel;
     FirebaseAuth auth;
@@ -209,11 +209,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    public void OpenAnnouncement(View view) {
-        Intent myIntent = new Intent(MainActivity.this, Announcements.class);
-        startActivity(myIntent);
     }
 
    /* public void LogoutMethod(View view) {

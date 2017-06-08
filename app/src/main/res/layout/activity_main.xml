@@ -20,6 +20,7 @@
             android:id="@+id/titleId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="Title of event"
             android:textColorHint="@color/colorSecondaryText"
             android:textColor="@color/colorPrimaryText"
@@ -52,18 +53,6 @@
             android:layout_gravity="center"
             android:gravity="center" />
 
-        <Button
-            android:id="@+id/btnRecycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/SendId"
-            android:text="Announcements"
-            android:onClick="OpenAnnouncement"
-            android:layout_margin="20dp"
-            android:background="@drawable/btn_drawable"
-            android:textColor="@color/color_white"
-            android:layout_gravity="center"
-            android:gravity="center"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
