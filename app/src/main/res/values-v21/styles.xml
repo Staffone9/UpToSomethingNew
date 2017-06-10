@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="btnColored">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:background">@drawable/btn_colored</item>
+    </style>
+
+    <style name="btnWhite">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:background">@drawable/btn_white</item>
+    </style>
+</resources>

@@ -44,12 +44,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="Unique username"
@@ -60,16 +59,15 @@
 
             <Button
                 android:id="@+id/avail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Check availability"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:onClick="CheckAvailability"
-                android:background="@drawable/btn_drawable"
-                android:textColor="@color/color_white"
                 android:layout_gravity="center"
-                android:gravity="center"/>
+                android:gravity="center"
+                style="@style/btnWhite" />
 
         </LinearLayout>
         <Button
@@ -79,8 +77,7 @@
             android:onClick="CreateChannel"
             android:text="Create"
             android:layout_margin="20dp"
-            android:background="@drawable/btn_drawable"
-            android:textColor="@color/color_white"
+            style="@style/btnColored"
             android:layout_gravity="center"
             android:gravity="center"/>
 

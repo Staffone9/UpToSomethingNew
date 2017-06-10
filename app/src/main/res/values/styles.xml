@@ -15,4 +15,14 @@
         <item name="android:background">@drawable/sign_in_drawable</item>
     </style>
 
+    <style name="btnColored">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:background">@drawable/btn_colored</item>
+    </style>
+
+    <style name="btnWhite">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:background">@drawable/btn_white</item>
+    </style>
+
 </resources>

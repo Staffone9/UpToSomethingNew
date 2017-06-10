@@ -48,10 +48,9 @@
             android:text="Send"
             android:onClick="SendNotification"
             android:layout_margin="20dp"
-            android:background="@drawable/btn_drawable"
-            android:textColor="@color/color_white"
             android:layout_gravity="center"
-            android:gravity="center" />
+            android:gravity="center"
+            style="@style/btnColored"/>
 
     </LinearLayout>
 
