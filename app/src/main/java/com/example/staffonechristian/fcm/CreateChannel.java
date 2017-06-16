@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +32,8 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     EditText channelDescription,userName;
     String creatorName,creatorEmailId;
     SharedPreferences sharedPreferences;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,17 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
         userName = (EditText) findViewById(R.id.username);
 
         createChannel.setEnabled(false);
+        auth = FirebaseAuth.getInstance();
         sharedPreferences = getSharedPreferences("SignIn",MODE_PRIVATE);
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser()==null)
+                {
+                    startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+                }
+            }
+        };
     }
 
     //Design part
@@ -97,11 +110,17 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
 
         }
         else if(id == R.id.logout){
-
+            auth.signOut();
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
     }
 
     //Backend part
@@ -119,5 +138,6 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
 
     public void CheckAvailability(View view) {
         createChannel.setEnabled(true);
+
     }
 }

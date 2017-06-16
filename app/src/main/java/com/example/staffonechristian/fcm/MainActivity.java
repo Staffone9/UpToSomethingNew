@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     LatestDataModel latestDataModel;
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
