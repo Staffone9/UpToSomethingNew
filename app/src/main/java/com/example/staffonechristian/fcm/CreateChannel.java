@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static com.google.android.gms.internal.zzt.TAG;
 
 public class CreateChannel extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -137,7 +143,54 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     }
 
     public void CheckAvailability(View view) {
-        createChannel.setEnabled(true);
 
+        DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
+        referenceWrite.child("ChannelSubscription").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean flag=true;
+                for (DataSnapshot individual : dataSnapshot.getChildren()) {
+                    String userName1 = individual.child("uniqueUserName").getValue(String.class);
+                    if(userName1.equals(userName.getText().toString()))
+                    {
+                        flag=false;
+                    }else{
+
+                    }
+                }
+                if(flag)
+                {
+                    Toast.makeText(getApplicationContext(),"User name is available",Toast.LENGTH_SHORT).show();
+                    createChannel.setEnabled(true);
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"User name is not available please choose another one",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+//        drWrite.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot data: dataSnapshot.getChildren()){
+//                    if (data.child(userName.getText().toString()).exists()) {
+//                        Toast.makeText(getApplicationContext(),"Exist che bhai",Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(),"Nathi bhai",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }
