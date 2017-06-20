@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class Announcements extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -34,6 +36,8 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
     private static ArrayList<LatestDataModel> data;
     static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +79,19 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
                         "cv","fv","lel"
                 ));
             }
-
+        auth = FirebaseAuth.getInstance();
         removedItems = new ArrayList<Integer>();
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser()==null)
+                {
+                    startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+                }
+            }
+        };
     }
 
     //Design part
@@ -91,6 +104,12 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -113,7 +132,7 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
 
         }
         else if(id == R.id.logout){
-
+            auth.signOut();
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
