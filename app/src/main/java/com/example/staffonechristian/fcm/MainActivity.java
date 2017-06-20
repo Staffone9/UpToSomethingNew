@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
         else if(id==R.id.sub){
-
+            Intent intent = new Intent(getApplicationContext(),subscription.class);
+            startActivity(intent);
         }
         else if(id == R.id.logout){
             auth.signOut();

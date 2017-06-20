@@ -129,7 +129,8 @@ public class Announcements extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
         }
         else if(id==R.id.sub){
-
+            Intent intent = new Intent(getApplicationContext(),subscription.class);
+            startActivity(intent);
         }
         else if(id == R.id.logout){
             auth.signOut();
