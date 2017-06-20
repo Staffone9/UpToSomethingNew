@@ -57,17 +57,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"/>
 
-            <Button
-                android:id="@+id/avail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Check availability"
-                android:layout_margin="10dp"
-                android:onClick="CheckAvailability"
-                android:layout_gravity="center"
-                android:gravity="center"
-                style="@style/btnWhite" />
+
 
         </LinearLayout>
         <Button

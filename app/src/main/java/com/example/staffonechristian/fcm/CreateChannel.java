@@ -70,7 +70,6 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
         channelDescription = (EditText) findViewById(R.id.ChannerlDescriptionEdittext);
         userName = (EditText) findViewById(R.id.username);
 
-        createChannel.setEnabled(false);
         auth = FirebaseAuth.getInstance();
         sharedPreferences = getSharedPreferences("SignIn",MODE_PRIVATE);
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -133,17 +132,6 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
     //Created by Staffone Christian
     public void CreateChannel(View view) {
 
-        channelDataModel = new ChannelDataModel(channelName.getText().toString(),channelDescription.getText().toString(),userName.getText().toString(),sharedPreferences.getString("creatorName",null),sharedPreferences.getString("emailID",null));
-        DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference drWrite = referenceWrite.child("ChannelSubscription").push();
-        drWrite.setValue(channelDataModel);
-        Toast.makeText(getApplicationContext(),"Channel Created Successfully",Toast.LENGTH_SHORT).show();
-        createChannel.setEnabled(false);
-
-    }
-
-    public void CheckAvailability(View view) {
-
         DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
         referenceWrite.child("ChannelSubscription").addValueEventListener(new ValueEventListener() {
             @Override
@@ -160,8 +148,13 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
                 }
                 if(flag)
                 {
-                    Toast.makeText(getApplicationContext(),"User name is available",Toast.LENGTH_SHORT).show();
-                    createChannel.setEnabled(true);
+
+                    channelDataModel = new ChannelDataModel(channelName.getText().toString(),channelDescription.getText().toString(),userName.getText().toString(),sharedPreferences.getString("creatorName",null),sharedPreferences.getString("emailID",null));
+                    DatabaseReference referenceWrite = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference drWrite = referenceWrite.child("ChannelSubscription").push();
+                    drWrite.setValue(channelDataModel);
+                    Toast.makeText(getApplicationContext(),"Channel Created Successfully",Toast.LENGTH_SHORT).show();
+
                 }else{
 
                     Toast.makeText(getApplicationContext(),"User name is not available please choose another one",Toast.LENGTH_SHORT).show();
@@ -175,22 +168,7 @@ public class CreateChannel extends AppCompatActivity implements NavigationView.O
         });
 
 
-//        drWrite.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot data: dataSnapshot.getChildren()){
-//                    if (data.child(userName.getText().toString()).exists()) {
-//                        Toast.makeText(getApplicationContext(),"Exist che bhai",Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getApplicationContext(),"Nathi bhai",Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
+
+
 }
